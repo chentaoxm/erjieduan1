@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function $(id){
+                return document.getElementById(id);
+            }
+            var i=0;
+            var run=false;
+        window.onload=function(){
+            var time=null;
+         
+            function st(){
+             time= setInterval(function(){
+                    i++;
+                    $("sec").innerHTML=dou(i%60);
+                    $("min").innerHTML=dou(parseInt(i/60));
+                    $("hour").innerHTML=dou(parseInt(i/3600));
+                },1000)
+            }
+            function dou(n){
+                if(n<10){
+                    return "0"+n;
+                }else{
+                    return n;
+                }
+            }
+            function pa(){
+              clearInterval(time);
+            }
+            $("bth1").onclick=function(){
+                if(!run){
+                    $("bth1").innerHTML="暂停"
+                    run=true;
+                    st()
+                }else{
+                    $("bth1").innerHTML="开始";
+                    run=false;
+                    pa()
+                }
+            }
+            $("reset").onclick=function(){
+                clearInterval(time);
+                i=0;
+                run=false;
+                $("bth1").innerHTML="开始";
+                $("sec").innerHTML="00";
+                 $("min").innerHTML="00";
+                $("hour").innerHTML="00";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="div1">
+        <span id="hour">00</span>
+        <span>:</span>
+        <span id="min">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <button id="bth1">开始</button>
+        <!-- <button id="pause">暂停</button> -->
+        <button id="reset">复位</button>
+    </div>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a=0;
+        function b(){
+            a=10;
+        }
+        function c(){
+            a=5;
+        }
+        alert(a)
+        b()
+        alert(a)
+        c()
+        alert(a)
+    </script>
+</body>
+</html> -->
